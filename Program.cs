@@ -1,3 +1,5 @@
+using Microsoft.Extensions.Diagnostics.HealthChecks;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
@@ -15,11 +17,17 @@ app.UseHttpsRedirection();
 //REST API => GET, POST, PUT, DELETE 
 app.MapGet("/",() => "Api is working Fine");
 
-app.MapGet("/hello",() =>{
-   // var response = new {message = "This is a json object", success=true};
-    // return "Get Method: Hello";
-    return Results.Content("<h1> Hello World </h1>","text/html");
+var products = new List<Product>(){
+    new Product("Samsung", 3242),
+    new Product("Iphone",4342),
+};
+
+app.MapGet("/products",() =>{
+    
+    return Results.Ok(products);
 });
 
 
 app.Run();
+
+public record Product(string Name, decimal Price);
