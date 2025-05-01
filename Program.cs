@@ -21,5 +21,16 @@ app.MapGet("/hello",() =>{
     return Results.Content("<h1> Hello World </h1>","text/html");
 });
 
+app.MapPost("/hello",() =>{
+    return Results.Created();//201
+});
+
+app.MapPut("/hello",() =>{
+    return Results.NoContent();//204
+});
+
+app.MapDelete("/hello",() =>{
+    return Results.NoContent(); //204
+});
 
 app.Run();
