@@ -14,17 +14,38 @@ if(app.Environment.IsDevelopment()){
 
 app.UseHttpsRedirection();
 
-List<string> errors = new List<string>();
+List<Category> categories = new List<Category>();
 
 //REST API => GET, POST, PUT, DELETE 
 app.MapGet("/",() => "Api is working Fine");
 
-//GET /api/categories => Read Categories
-
+//GET: /api/categories => Read Categories
 app.MapGet("/api/categories",() =>{
-    
-    return Results.Ok();
+    return Results.Ok(categories);
 });
+
+//Post: /api/categories => Create a Categories
+app.MapPost("/api/categories",() =>{
+    var newCategory = new Category{
+        CategoryId = Guid.Parse("a8b81522-f859-4712-ad68-76063c81e0ac"),
+        CategoryName="Electronics",
+        CategoryDescription="Devices and gadgets including phones, Laptops and other electronic equipment",
+        CreateAt = DateTime.UtcNow,
+    };
+    categories.Add(newCategory);
+    return Results.Created($"/api/categories/{newCategory.CategoryId}",newCategory);
+});
+
+//DELETE  : /api/categories => Delete a Categories
+app.MapDelete("/api/categories",() =>{
+    var foundCategory = categories.FirstOrDefault(category => category.CategoryId == Guid.Parse("d8b81522-f859-4712-ad68-76063c81e0ac"));
+    if(foundCategory == null){
+        return Results.NotFound("Category with this id does not exits");
+    }
+    categories.Remove(foundCategory);
+    return Results.NoContent();
+});
+
 
 
 app.Run();

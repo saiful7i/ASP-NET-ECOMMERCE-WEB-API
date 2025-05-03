@@ -3,17 +3,17 @@ GET  http://localhost:5228
 
 ###
 
-GET http://localhost:5228/products
+GET http://localhost:5228/api/categories
 
 ###
-POST http://localhost:5228/hello
-
-###
-
-PUT http://localhost:5228/hello
+POST http://localhost:5228/api/categories
 
 ###
 
-DELETE http://localhost:5228/hello
+PUT http://localhost:5228/api/categories
+
+###
+
+DELETE http://localhost:5228/api/categories
 
 ###
