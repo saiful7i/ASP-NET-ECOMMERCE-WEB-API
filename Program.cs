@@ -27,7 +27,7 @@ app.MapGet("/api/categories",() =>{
 //Post: /api/categories => Create a Categories
 app.MapPost("/api/categories",() =>{
     var newCategory = new Category{
-        CategoryId = Guid.Parse("a8b81522-f859-4712-ad68-76063c81e0ac"),
+        CategoryId = Guid.Parse("d8b81522-f859-4712-ad68-76063c81e0ac"),
         CategoryName="Electronics",
         CategoryDescription="Devices and gadgets including phones, Laptops and other electronic equipment",
         CreateAt = DateTime.UtcNow,
@@ -44,6 +44,17 @@ app.MapDelete("/api/categories",() =>{
     }
     categories.Remove(foundCategory);
     return Results.NoContent();
+});
+
+//Update: /api/categories => Update Categories
+app.MapPut("/api/categories",() =>{
+    var foundCategory = categories.FirstOrDefault(category => category.CategoryId== Guid.Parse("d8b81522-f859-4712-ad68-76063c81e0ac"));
+    if(foundCategory == null){
+        return Results.NotFound("Category with this id does not exits");
+    }
+    foundCategory.CategoryName = "Smart Phone";
+    foundCategory.CategoryDescription = "smart phone have lots of company";
+    return Results.Ok(categories);
 });
 
 
