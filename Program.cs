@@ -14,17 +14,16 @@ if(app.Environment.IsDevelopment()){
 
 app.UseHttpsRedirection();
 
+List<string> errors = new List<string>();
+
 //REST API => GET, POST, PUT, DELETE 
 app.MapGet("/",() => "Api is working Fine");
 
-var products = new List<Product>(){
-    new Product("Samsung", 4242),
-    new Product("Iphone",4242),
-};
+//GET /api/categories => Read Categories
 
-app.MapGet("/products",() =>{
+app.MapGet("/api/categories",() =>{
     
-    return Results.Ok(products);
+    return Results.Ok();
 });
 
 
@@ -46,4 +45,7 @@ public record Product{
     public string? CategoryName{get; set;}
 }
 //CRUD
-//Create => Create a Category
+//Create => Create a Category => POST: /api/categories
+//Read  => Read a Category => GET:  /api/categories
+//Update  => Update a Category => GET:  /api/categories
+//Delete  =>  a Category => GET:  /api/categories
