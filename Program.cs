@@ -30,6 +30,13 @@ app.MapGet("/products",() =>{
 
 app.Run();
 
+public record Category{
+    public Guid CategoryId{ get; set; }
+    public string? CategoryName{ get; set; }
+    public string? CategoryDescription{ get; set; }
+    public DateTime CreateAt{ get; set; }    
+}
+
 public record Product{
     public Guid ProductId{get; set;}
     public string? ProductName{get; set;}
@@ -37,8 +44,6 @@ public record Product{
     public decimal ProductPrice{get; set;}
     public int StockQuantity{get; set;}
     public string? CategoryName{get; set;}
-    
-
-
 }
-// (string Name, decimal Price);
+//CRUD
+//Create => Create a Category
