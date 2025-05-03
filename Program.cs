@@ -18,8 +18,8 @@ app.UseHttpsRedirection();
 app.MapGet("/",() => "Api is working Fine");
 
 var products = new List<Product>(){
-    new Product("Samsung", 3242),
-    new Product("Iphone",4342),
+    new Product("Samsung", 4242),
+    new Product("Iphone",4242),
 };
 
 app.MapGet("/products",() =>{
