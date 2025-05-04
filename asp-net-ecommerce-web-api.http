@@ -9,8 +9,8 @@ GET http://localhost:5228/api/categories
 POST http://localhost:5228/api/categories
 Content-Type: application/json
 {
-    CategoryName : "Electronics",
-    CategoryDescription : "Devices and gadgets including phones, Laptops and other electronic equipment"
+    "categoryName":"Electronics",
+    "categoryDescription":"Devices and gadgets including phones, Laptops and other electronic equipment"
 }
 
 ###
