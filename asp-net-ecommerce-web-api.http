@@ -10,8 +10,8 @@ POST http://localhost:5228/api/categories
 Content-Type: application/json
 
 {
-    "categoryname":"Electronics",
-    "categorydescription":"Devices and gadgets including phones, Laptops and other electronic equipment"
+    "categoryName":"Electronics",
+    "categoryDescription":"Phone and Electric Device"
 }
 
 ###
@@ -20,6 +20,6 @@ PUT http://localhost:5228/api/categories
 
 ###
 
-DELETE http://localhost:5228/api/categories
+DELETE http://localhost:5228/api/categories/61a55cf2-be0d-4433-91c9-3dde50bf45c4
 
 ###

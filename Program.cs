@@ -39,9 +39,9 @@ app.MapPost("/api/categories",([FromBody] Category categoryData) =>{
     
 });
 
-//DELETE  : /api/categories => Delete a Categories
-app.MapDelete("/api/categories",() =>{
-    var foundCategory = categories.FirstOrDefault(category => category.CategoryId == Guid.Parse("d8b81522-f859-4712-ad68-76063c81e0ac"));
+//DELETE  : /api/categories/{categoryId} => Delete a Categories
+app.MapDelete("/api/categories/{categoryId}",(Guid categoryId) =>{
+    var foundCategory = categories.FirstOrDefault(category => category.CategoryId == categoryId);
     if(foundCategory == null){
         return Results.NotFound("Category with this id does not exits");
     }
