@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -25,15 +26,18 @@ app.MapGet("/api/categories",() =>{
 });
 
 //Post: /api/categories => Create a Categories
-app.MapPost("/api/categories",() =>{
-    var newCategory = new Category{
-        CategoryId = Guid.Parse("d8b81522-f859-4712-ad68-76063c81e0ac"),
-        CategoryName="Electronics",
-        CategoryDescription="Devices and gadgets including phones, Laptops and other electronic equipment",
-        CreateAt = DateTime.UtcNow,
-    };
-    categories.Add(newCategory);
-    return Results.Created($"/api/categories/{newCategory.CategoryId}",newCategory);
+app.MapPost("/api/categories",([FromBody] Category categoryData) =>{
+    Console.WriteLine($"{categoryData}");
+    
+    // var newCategory = new Category{
+    //     CategoryId = Guid.NewGuid(),
+    //     CategoryName="Electronics",
+    //     CategoryDescription="Devices and gadgets including phones, Laptops and other electronic equipment",
+    //     CreateAt = DateTime.UtcNow,
+    // };
+    // categories.Add(newCategory);
+    // return Results.Created($"/api/categories/{newCategory.CategoryId}",newCategory);
+    return Results.Ok();
 });
 
 //DELETE  : /api/categories => Delete a Categories
