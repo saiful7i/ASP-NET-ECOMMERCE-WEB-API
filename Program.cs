@@ -27,17 +27,16 @@ app.MapGet("/api/categories",() =>{
 
 //Post: /api/categories => Create a Categories
 app.MapPost("/api/categories",([FromBody] Category categoryData) =>{
-    Console.WriteLine($"{categoryData}");
+      
+    var newCategory = new Category{
+        CategoryId = Guid.NewGuid(),
+        CategoryName=categoryData.CategoryName,
+        CategoryDescription=categoryData.CategoryDescription,
+        CreateAt = DateTime.UtcNow,
+    };
+    categories.Add(newCategory);
+    return Results.Created($"/api/categories/{newCategory.CategoryId}",newCategory);
     
-    // var newCategory = new Category{
-    //     CategoryId = Guid.NewGuid(),
-    //     CategoryName="Electronics",
-    //     CategoryDescription="Devices and gadgets including phones, Laptops and other electronic equipment",
-    //     CreateAt = DateTime.UtcNow,
-    // };
-    // categories.Add(newCategory);
-    // return Results.Created($"/api/categories/{newCategory.CategoryId}",newCategory);
-    return Results.Ok();
 });
 
 //DELETE  : /api/categories => Delete a Categories
