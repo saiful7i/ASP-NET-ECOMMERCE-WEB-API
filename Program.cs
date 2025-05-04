@@ -49,14 +49,14 @@ app.MapDelete("/api/categories/{categoryId}",(Guid categoryId) =>{
     return Results.NoContent();
 });
 
-//Update: /api/categories => Update Categories
-app.MapPut("/api/categories",() =>{
-    var foundCategory = categories.FirstOrDefault(category => category.CategoryId== Guid.Parse("d8b81522-f859-4712-ad68-76063c81e0ac"));
+//Update: /api/categories/{categoryId} => Update Categories
+app.MapPut("/api/categories/{categoryId}",(Guid categoryId,[FromBody] Category categoryData) =>{
+    var foundCategory = categories.FirstOrDefault(category => category.CategoryId== categoryId);
     if(foundCategory == null){
         return Results.NotFound("Category with this id does not exits");
     }
-    foundCategory.CategoryName = "Smart Phone";
-    foundCategory.CategoryDescription = "smart phone have lots of company";
+    foundCategory.CategoryName = categoryData.CategoryName;
+    foundCategory.CategoryDescription = categoryData.CategoryDescription;
     return Results.Ok(categories);
 });
 
