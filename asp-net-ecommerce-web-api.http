@@ -16,11 +16,6 @@ Content-Type: application/json
 
 ###
 
-DELETE http://localhost:5228/api/categories/61a55cf2-be0d-4433-91c9-3dde50bf45c4
-
-
-###
-
 PUT http://localhost:5228/api/categories/e40d2389-adcf-4943-9c60-fd2ff8e9f58a
 Content-Type: application/json
 
@@ -28,3 +23,9 @@ Content-Type: application/json
     "categoryName":"Cloths2",
     "categoryDescription":"BD cloths2"
 }
+
+###
+
+DELETE http://localhost:5228/api/categories/61a55cf2-be0d-4433-91c9-3dde50bf45c4
+
+
