@@ -21,7 +21,10 @@ List<Category> categories = new List<Category>();
 app.MapGet("/",() => "Api is working Fine");
 
 //GET: /api/categories => Read Categories
-app.MapGet("/api/categories",() =>{
+app.MapGet("/api/categories",(string searchValue) =>{
+    Console.WriteLine($"{searchValue}");
+    //search categories using this value
+    
     return Results.Ok(categories);
 });
 
