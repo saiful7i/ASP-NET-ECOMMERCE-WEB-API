@@ -21,9 +21,13 @@ List<Category> categories = new List<Category>();
 app.MapGet("/",() => "Api is working Fine");
 
 //GET: /api/categories => Read Categories
-app.MapGet("/api/categories",(string searchValue) =>{
+app.MapGet("/api/categories",([FromQuery]string searchValue) =>{
     Console.WriteLine($"{searchValue}");
     //search categories using this value
+    if(searchValue != null){
+        categories.Where(cat => !string.IsNullOrEmpty(cat.CategoryName) && cat.CategoryName.Contains(searchValue,StringComparison.OrdinalIgnoreCase)).ToList
+        return Results.Ok(categories);
+    }
     
     return Results.Ok(categories);
 });
