@@ -47,7 +47,7 @@ app.MapPost("/api/categories",([FromBody] Category categoryData) =>{
 });
 
 //DELETE  : /api/categories/{categoryId} => Delete a Categories
-app.MapDelete("/api/categories/{categoryId}",(Guid categoryId) =>{
+app.MapDelete("/api/categories/{categoryId:guid}",(Guid categoryId) =>{
     var foundCategory = categories.FirstOrDefault(category => category.CategoryId == categoryId);
     if(foundCategory == null){
         return Results.NotFound("Category with this id does not exits");
@@ -57,7 +57,7 @@ app.MapDelete("/api/categories/{categoryId}",(Guid categoryId) =>{
 });
 
 //Update: /api/categories/{categoryId} => Update Categories
-app.MapPut("/api/categories/{categoryId}",(Guid categoryId,[FromBody] Category categoryData) =>{
+app.MapPut("/api/categories/{categoryId:guid}",(Guid categoryId,[FromBody] Category categoryData) =>{
     var foundCategory = categories.FirstOrDefault(category => category.CategoryId== categoryId);
     if(foundCategory == null){
         return Results.NotFound("Category with this id does not exits");

@@ -26,6 +26,5 @@ Content-Type: application/json
 
 ###
 
-DELETE http://localhost:5228/api/categories/61a55cf2-be0d-4433-91c9-3dde50bf45c4
-
+DELETE http://localhost:5228/api/categories/eeb1c8a5-ac3c-4b7b-a896-32edf4bfa2b7
 
