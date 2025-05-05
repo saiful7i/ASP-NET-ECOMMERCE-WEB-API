@@ -24,7 +24,8 @@ app.MapGet("/",() => "Api is working Fine");
 app.MapGet("/api/categories",([FromQuery] string searchValue="") =>{
 
     if(!string.IsNullOrEmpty(searchValue)){
-        var searchCategories = categories.Where(c => !string.IsNullOrEmpty(c.CategoryName) && c.CategoryName.Contains(searchValue, StringComparison.OrdinalIgnoreCase)).ToList();
+        Console.WriteLine($"{searchValue}");
+        var searchCategories = categories.Where(c => c.CategoryName.Contains(searchValue, StringComparison.OrdinalIgnoreCase)).ToList();
         return Results.Ok(searchCategories);
     }
     
@@ -72,7 +73,7 @@ app.Run();
 
 public record Category{
     public Guid CategoryId{ get; set; }
-    public string? CategoryName{ get; set; }
+    public string CategoryName{ get; set; }
     public string? CategoryDescription{ get; set; }
     public DateTime CreateAt{ get; set; }    
 }

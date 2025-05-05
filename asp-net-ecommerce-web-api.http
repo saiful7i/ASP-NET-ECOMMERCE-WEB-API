@@ -3,14 +3,14 @@ GET  http://localhost:5228
 
 ###
 
-GET http://localhost:5228/api/categories?searchValue=electronics
+GET http://localhost:5228/api/categories?searchValue=clothing
 
 ###
 POST http://localhost:5228/api/categories
 Content-Type: application/json
 
 {
-    "categoryName":"clothing",
+    "categoryName":"electronics",
     "categoryDescription":"electronics"
 }
 
