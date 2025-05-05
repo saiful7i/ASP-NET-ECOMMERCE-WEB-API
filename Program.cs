@@ -22,10 +22,10 @@ app.MapGet("/",() => "Api is working Fine");
 
 //GET: /api/categories => Read Categories
 app.MapGet("/api/categories",([FromQuery]string searchValue) =>{
-    Console.WriteLine($"{searchValue}");
+    // Console.WriteLine($"{searchValue}");
     //search categories using this value
     if(searchValue != null){
-        categories.Where(cat => !string.IsNullOrEmpty(cat.CategoryName) && cat.CategoryName.Contains(searchValue,StringComparison.OrdinalIgnoreCase)).ToList
+        var searchCategories = categories.Where(cat => !string.IsNullOrEmpty(cat.CategoryName) && cat.CategoryName.Contains(searchValue,StringComparison.OrdinalIgnoreCase)).ToList
         return Results.Ok(categories);
     }
     
