@@ -17,7 +17,7 @@ namespace asp_net_ecommerce_web_api.Controllers
         [HttpGet]//using fot get request 
         public IActionResult GetCategories([FromQuery] string searchValue=""){
             
-            if(!string.IsNullOrEmpty(searchValue)){
+            if(string.IsNullOrEmpty(searchValue)){
                 var searchCategories = categories.Where(c => c.CategoryName.Contains(searchValue, StringComparison.OrdinalIgnoreCase)).ToList();
                 return Ok(searchCategories);
                 }
@@ -29,10 +29,10 @@ namespace asp_net_ecommerce_web_api.Controllers
         //POST: /api/categories => Read Categories
         [HttpPost]//using fot post request 
         public IActionResult CreateCategories([FromBody] Category categoryData){
-            if(!string.IsNullOrEmpty(categoryData.CategoryName)){
+            if(string.IsNullOrEmpty(categoryData.CategoryName)){
                 return BadRequest("Category Name is required and can not be empty");
             }
-            if(categoryData.CategoryName.Length >2){
+            if(categoryData.CategoryName.Length < 2){
                 return BadRequest("Category name must be atleast 2 characters long");
             }
             
@@ -59,7 +59,7 @@ namespace asp_net_ecommerce_web_api.Controllers
         }
 
     //PUT: /api/categories/{categoryId} => Update a Categories
-        [HttpPut("{categoryId}")]
+        [HttpPut("{categoryId:guid}")]
         public IActionResult UpdateByIdCategory(Guid categoryId,[FromBody] Category categoryData){
             if (categoryData == null){
                 return BadRequest("Category date is missing");
@@ -72,8 +72,11 @@ namespace asp_net_ecommerce_web_api.Controllers
             }
 
             if(!string.IsNullOrEmpty(categoryData.CategoryName)){
-                if(categoryData.CategoryName.Length >2){
+                Console.WriteLine($"Condition have no Problem");
+                
+                if(categoryData.CategoryName.Length >= 2){
                     foundCategory.CategoryName = categoryData.CategoryName;
+                    
                 }
                 else{
                     return BadRequest("Category name must be atleast 2 character long");

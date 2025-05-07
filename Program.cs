@@ -3,6 +3,9 @@ using Microsoft.Extensions.Diagnostics.HealthChecks;
 
 var builder = WebApplication.CreateBuilder(args);
 
+//add services to the controller
+builder.Services.AddControllers();
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -20,23 +23,9 @@ app.UseHttpsRedirection();
 app.MapGet("/",() => "Api is working Fine");
 
 
+app.MapControllers();
 app.Run();
 
-
-
-// public record Product{
-//     public Guid ProductId{get; set;}
-//     public string? ProductName{get; set;}
-//     public string? Description{get; set;}
-//     public decimal ProductPrice{get; set;}
-//     public int StockQuantity{get; set;}
-//     public string? CategoryName{get; set;}
-// }
-//CRUD
-//Create => Create a Category => POST: /api/categories
-//Read  => Read a Category => GET:  /api/categories
-//Update  => Update a Category => GET:  /api/categories
-//Delete  =>  a Category => GET:  /api/categories
 
 
 //MVC = Models, View, Controllers 

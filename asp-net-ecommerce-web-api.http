@@ -3,7 +3,9 @@ GET  http://localhost:5228
 
 ###
 
-GET http://localhost:5228/api/categories?searchValue=clothing
+GET http://localhost:5228/api/categories
+
+# GET http://localhost:5228/api/categories?searchValue=clothing
 
 ###
 POST http://localhost:5228/api/categories
@@ -11,20 +13,20 @@ Content-Type: application/json
 
 {
     "categoryName":"electronics",
-    "categoryDescription":"electronics"
+    "categoryDescription":"nice category"
 }
 
 ###
 
-PUT http://localhost:5228/api/categories/e40d2389-adcf-4943-9c60-fd2ff8e9f58a
+PUT http://localhost:5228/api/categories/aedc0097-8ffe-4894-870e-04e3f6209158
 Content-Type: application/json
 
 {
-    "categoryName":"Cloths2",
-    "categoryDescription":"BD cloths2"
+    "categoryName":"television",
+    "categoryDescription":"nice Product of the category"
 }
 
 ###
 
-DELETE http://localhost:5228/api/categories/eeb1c8a5-ac3c-4b7b-a896-32edf4bfa2b7
+DELETE http://localhost:5228/api/categories/aedc0097-8ffe-4894-870e-04e3f6209158
 
