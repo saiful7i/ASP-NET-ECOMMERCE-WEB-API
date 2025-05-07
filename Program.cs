@@ -16,61 +16,22 @@ if(app.Environment.IsDevelopment()){
 app.UseHttpsRedirection();
 
 
-
 //REST API => GET, POST, PUT, DELETE 
 app.MapGet("/",() => "Api is working Fine");
-
-
-
-//Post: /api/categories => Create a Categories
-app.MapPost("/api/categories",([FromBody] Category categoryData) =>{
-      
-    var newCategory = new Category{
-        CategoryId = Guid.NewGuid(),
-        CategoryName=categoryData.CategoryName,
-        CategoryDescription=categoryData.CategoryDescription,
-        CreateAt = DateTime.UtcNow,
-    };
-    categories.Add(newCategory);
-    return Results.Created($"/api/categories/{newCategory.CategoryId}",newCategory);
-    
-});
-
-//DELETE  : /api/categories/{categoryId} => Delete a Categories
-app.MapDelete("/api/categories/{categoryId:guid}",(Guid categoryId) =>{
-    var foundCategory = categories.FirstOrDefault(category => category.CategoryId == categoryId);
-    if(foundCategory == null){
-        return Results.NotFound("Category with this id does not exits");
-    }
-    categories.Remove(foundCategory);
-    return Results.NoContent();
-});
-
-//Update: /api/categories/{categoryId} => Update Categories
-app.MapPut("/api/categories/{categoryId:guid}",(Guid categoryId,[FromBody] Category categoryData) =>{
-    var foundCategory = categories.FirstOrDefault(category => category.CategoryId== categoryId);
-    if(foundCategory == null){
-        return Results.NotFound("Category with this id does not exits");
-    }
-    foundCategory.CategoryName = categoryData.CategoryName;
-    foundCategory.CategoryDescription = categoryData.CategoryDescription;
-    return Results.Ok(categories);
-});
-
 
 
 app.Run();
 
 
 
-public record Product{
-    public Guid ProductId{get; set;}
-    public string? ProductName{get; set;}
-    public string? Description{get; set;}
-    public decimal ProductPrice{get; set;}
-    public int StockQuantity{get; set;}
-    public string? CategoryName{get; set;}
-}
+// public record Product{
+//     public Guid ProductId{get; set;}
+//     public string? ProductName{get; set;}
+//     public string? Description{get; set;}
+//     public decimal ProductPrice{get; set;}
+//     public int StockQuantity{get; set;}
+//     public string? CategoryName{get; set;}
+// }
 //CRUD
 //Create => Create a Category => POST: /api/categories
 //Read  => Read a Category => GET:  /api/categories
