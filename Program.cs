@@ -15,22 +15,12 @@ if(app.Environment.IsDevelopment()){
 
 app.UseHttpsRedirection();
 
-List<Category> categories = new List<Category>();
+
 
 //REST API => GET, POST, PUT, DELETE 
 app.MapGet("/",() => "Api is working Fine");
 
-//GET: /api/categories => Read Categories
-app.MapGet("/api/categories",([FromQuery] string searchValue="") =>{
 
-    if(!string.IsNullOrEmpty(searchValue)){
-        Console.WriteLine($"{searchValue}");
-        var searchCategories = categories.Where(c => c.CategoryName.Contains(searchValue, StringComparison.OrdinalIgnoreCase)).ToList();
-        return Results.Ok(searchCategories);
-    }
-    
-    return Results.Ok(categories);
-});
 
 //Post: /api/categories => Create a Categories
 app.MapPost("/api/categories",([FromBody] Category categoryData) =>{
@@ -71,12 +61,7 @@ app.MapPut("/api/categories/{categoryId:guid}",(Guid categoryId,[FromBody] Categ
 
 app.Run();
 
-public record Category{
-    public Guid CategoryId{ get; set; }
-    public string CategoryName{ get; set; }
-    public string? CategoryDescription{ get; set; }
-    public DateTime CreateAt{ get; set; }    
-}
+
 
 public record Product{
     public Guid ProductId{get; set;}
@@ -91,3 +76,6 @@ public record Product{
 //Read  => Read a Category => GET:  /api/categories
 //Update  => Update a Category => GET:  /api/categories
 //Delete  =>  a Category => GET:  /api/categories
+
+
+//MVC = Models, View, Controllers 
