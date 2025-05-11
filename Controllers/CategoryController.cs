@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using asp_net_ecommerce_web_api.DTOs;
 using asp_net_ecommerce_web_api.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -28,7 +29,7 @@ namespace asp_net_ecommerce_web_api.Controllers
 
         //POST: /api/categories => Read Categories
         [HttpPost]//using fot post request 
-        public IActionResult CreateCategories([FromBody] Category categoryData){
+        public IActionResult CreateCategories([FromBody] CategoryCreateDto categoryData){
             if(string.IsNullOrEmpty(categoryData.CategoryName)){
                 return BadRequest("Category Name is required and can not be empty");
             }
@@ -60,7 +61,7 @@ namespace asp_net_ecommerce_web_api.Controllers
 
     //PUT: /api/categories/{categoryId} => Update a Categories
         [HttpPut("{categoryId:guid}")]
-        public IActionResult UpdateByIdCategory(Guid categoryId,[FromBody] Category categoryData){
+        public IActionResult UpdateByIdCategory(Guid categoryId,[FromBody] CategoryUpdateDto categoryData){
             if (categoryData == null){
                 return BadRequest("Category date is missing");
             }
