@@ -1,13 +1,18 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Razor.TagHelpers;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 
 var builder = WebApplication.CreateBuilder(args);
 
 //add services to the controller
+builder.Services.AddControllers().ConfigureApiBehaviorOptions(options => {
+    options.SuppressModelStateInvalidFilter = true;
+});
 builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
 
 var app = builder.Build();
 

@@ -12,7 +12,7 @@ POST http://localhost:5228/api/categories
 Content-Type: application/json
 
 {
-    "categoryName":"electronics",
+    
     "categoryDescription":"nice category"
 }
 
