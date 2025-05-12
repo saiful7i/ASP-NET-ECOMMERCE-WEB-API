@@ -22,7 +22,7 @@ PUT http://localhost:5228/api/categories/aedc0097-8ffe-4894-870e-04e3f6209158
 Content-Type: application/json
 
 {
-    "categoryName":"television",
+    "categoryName":"t",
     "categoryDescription":"nice Product of the category"
 }
 

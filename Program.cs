@@ -16,11 +16,11 @@ builder.Services.Configure<ApiBehaviorOptions>(options => {
                     Field = e.Key,
                     Errors = e.Value != null ? e.Value.Errors.Select(x => x.ErrorMessage).ToArray() : new string[0]
                 }).ToList();
-                var errorsString = string.Join("; ",errors.
-                Select(e => $"{e.Field} : {string.Join(", ",e.Errors)}" ));
+                // var errorsString = string.Join("; ",errors.
+                // Select(e => $"{e.Field} : {string.Join(", ",e.Errors)}" ));
                 return new BadRequestObjectResult(new {
                     Message = "Validation failed",
-                    Errors = errorsString
+                    Errors = errors
                 });
     };
 });
