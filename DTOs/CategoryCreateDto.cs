@@ -9,7 +9,10 @@ namespace asp_net_ecommerce_web_api.DTOs
     public class CategoryCreateDto
     {
         [Required(ErrorMessage = "Category name is required")]
-        public string CategoryName { get; set; }
+        [StringLength(100, MinimumLength = 2, ErrorMessage = "Category name Must be between 2 and 100 character long")]
+        public string CategoryName { get; set; } =  string.Empty;
+
+        [StringLength(500, ErrorMessage = "Category description cannot exceed 500 characters.")]
         public string CategoryDescription { get; set;}  = string.Empty;  
     }
 }
