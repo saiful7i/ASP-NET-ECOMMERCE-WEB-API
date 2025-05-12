@@ -40,17 +40,7 @@ namespace asp_net_ecommerce_web_api.Controllers
         [HttpPost]//using fot post request 
         public IActionResult CreateCategories([FromBody] CategoryCreateDto categoryData)
         {
-            if(!ModelState.IsValid)
-            {
-                var errors = ModelState
-                .Where(e => e.Value.Errors.Count > 0)
-                .Select(e => new 
-                {
-                    Field = e.Key,
-                    Errors = e.Value.Errors.Select(x => x.ErrorMessage).ToArray()
-                }).ToList();
-                return BadRequest(errors);
-            }
+           
             var newCategory = new Category
             {
                 CategoryId = Guid.NewGuid(),

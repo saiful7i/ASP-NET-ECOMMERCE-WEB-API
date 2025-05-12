@@ -5,10 +5,24 @@ using Microsoft.Extensions.Diagnostics.HealthChecks;
 var builder = WebApplication.CreateBuilder(args);
 
 //add services to the controller
-builder.Services.AddControllers().ConfigureApiBehaviorOptions(options => {
-    options.SuppressModelStateInvalidFilter = true;
-});
 builder.Services.AddControllers();
+
+builder.Services.Configure<ApiBehaviorOptions>(options => {
+    options.InvalidModelStateResponseFactory = context => {
+                var errors = context.ModelState
+                .Where(e => e.Value.Errors.Count > 0)
+                .Select(e => new 
+                {
+                    Field = e.Key,
+                    Message = e.Value.Errors.Select(x => x.ErrorMessage).ToArray()
+                }).ToList();
+                // var errorString = string.Join("; ",errors.
+                // Select(e => $"{e.Field} : {string.Join(", ",e.Message)}" ));
+                return new BadRequestObjectResult(new {
+
+                });
+    };
+});
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
