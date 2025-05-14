@@ -32,7 +32,7 @@ namespace asp_net_ecommerce_web_api.Controllers
                 CreateAt = c.CreateAt,
             }).ToList();
     
-            return Ok(categoriesList);
+            return Ok(ApiResponse<List<CategoryReadDto>>.SuccessResponse(categoriesList,200,"Category Data Return Successful"));
         }
 
 
@@ -58,21 +58,7 @@ namespace asp_net_ecommerce_web_api.Controllers
                 CreateAt = newCategory.CreateAt 
             };
 
-            return Created($"/api/categories/{newCategory.CategoryId}",categoryReadDto);
-        }
-
-    //Delete: /api/categories/{categoryId} => Delete a Categories
-        [HttpDelete("{categoryId:guid}")]
-        public IActionResult DeleteByIdCategory(Guid categoryId)
-        {
-            var foundCategory = categories.FirstOrDefault(category => category.CategoryId == categoryId);
-            if(foundCategory == null)
-            {
-            return NotFound("Category with this id does not exits");
-            }
-        categories.Remove(foundCategory);
-        return NoContent();
-
+            return Created($"/api/categories/{newCategory.CategoryId}",ApiResponse<CategoryReadDto>.SuccessResponse(categoryReadDto,201,"Category Create Successful"));
         }
 
     //PUT: /api/categories/{categoryId} => Update a Categories
@@ -111,7 +97,23 @@ namespace asp_net_ecommerce_web_api.Controllers
                 foundCategory.CategoryDescription = categoryData.CategoryDescription;
             }
 
-            return NoContent();
-        }        
+            return Ok(ApiResponse<object>.SuccessResponse(null,204,"Category Update Successful"));
+        }
+
+        
+    //Delete: /api/categories/{categoryId} => Delete a Categories
+        [HttpDelete("{categoryId:guid}")]
+        public IActionResult DeleteByIdCategory(Guid categoryId)
+        {
+            var foundCategory = categories.FirstOrDefault(category => category.CategoryId == categoryId);
+            if(foundCategory == null)
+            {
+            return NotFound("Category with this id does not exits");
+            }
+        categories.Remove(foundCategory);
+        return Ok(ApiResponse<object>.SuccessResponse(null,204,"Category Deleted successfully"));
+
+        }
+        
     }
 }

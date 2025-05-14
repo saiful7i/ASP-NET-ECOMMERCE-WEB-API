@@ -19,13 +19,19 @@ namespace asp_net_ecommerce_web_api.Controllers
         public DateTime TimeStamp { get; set; }
 
         //Constructor for successful response
-        public ApiResponse(T data, int statusCode, string message=""){
-            Success = true;
+        public ApiResponse(bool success,string message,T data,List<string> errors, int statusCode ){
+            Success = success;
             Message = message;
             Data = data;
             Errors = null;
             StatusCode = statusCode;
             TimeStamp = DateTime.UtcNow;
+        }
+
+        //static method for creating a successful response
+        public static ApiResponse<T> SuccessResponse(T data,int statusCode, string message="")
+        {
+            return new ApiResponse<T>(true,message,data,null,statusCode);
         }
 
         //Constructor for error response
