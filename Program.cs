@@ -20,7 +20,7 @@ builder.Services.Configure<ApiBehaviorOptions>(options => {
                 // Select(e => $"{e.Field} : {string.Join(", ",e.Errors)}" ));
                 return new BadRequestObjectResult(new {
                     Message = "Validation failed",
-                    Errors = errors
+                    Errors = errors 
                 });
     };
 });
