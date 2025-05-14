@@ -13,20 +13,21 @@ Content-Type: application/json
 
 {
     
-    "categoryDescription":"nice category"
-}
-
-###
-
-PUT http://localhost:5228/api/categories/aedc0097-8ffe-4894-870e-04e3f6209158
-Content-Type: application/json
-
-{
-    "categoryName":"t",
+    "categoryName":"smart phone",
     "categoryDescription":"nice Product of the category"
 }
 
 ###
 
-DELETE http://localhost:5228/api/categories/aedc0097-8ffe-4894-870e-04e3f6209158
+PUT http://localhost:5228/api/categories/230ec111-47a0-4cd0-a756-6cc905b49274
+Content-Type: application/json
+
+{
+    "categoryName":"smart electronic",
+    "categoryDescription":"nice Product of the category"
+}
+
+###
+
+DELETE http://localhost:5228/api/categories/230ec111-47a0-4cd0-a756-6cc905b49274
 
