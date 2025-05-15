@@ -25,7 +25,7 @@ builder.Services.Configure<ApiBehaviorOptions>(options =>
                 .Where(e => e.Value != null && e.Value.Errors.Count > 0)
                 .SelectMany(e => e.Value.Errors.Select(x=>x.ErrorMessage)).ToList();  
                 
-                return new BadRequestObjectResult(ApiResponse.ErrorResponse));
+                return new BadRequestObjectResult(ApiResponse<object>.ErrorResponse(errors,400,"Validation Failed"));
     };
 });
 
